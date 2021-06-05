@@ -1,15 +1,33 @@
 import React from "react"
 import Navigation from "./components/Navigation"
-import Container from "react-bootstrap/Container"
+// import Container from "react-bootstrap/Container"
 import "bootstrap/dist/css/bootstrap.min.css"
-import Projlist from "./components/Projlist"
+// import Projlist from "./components/Projlist"
 import ProjPage from "./components/ProjPage"
+import HomePage from "./components/HomePage"
 import data from "./data.js"
 import MemberPage from "./components/MemberPage.js"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+
+} from "react-router-dom";
 
 function App() {
+  async function test(){
+    var res = await fetch('http://localhost:9000/api');
+    res.text()
+    .then((text)=> {console.log(text);})
+    .catch((err)=>{console.log("error has occured")});
+
+  }
+  React.useEffect(()=>{
+    test();
+  } , [])
   return (
-    <div className="App">
+    <div className="App" style = {{backgroundColor : "light-pink"}}>
       <Navigation></Navigation>
       {/* When we click on the add project
       1. it will show a prompt to fill the name of the project and startDate
@@ -17,11 +35,25 @@ function App() {
         , will rename it and give the link of the new project 
       3. Now we will taken to the project page, where we can start adding members and giving them editing rights
       */}
-      <Container>
-        <Projlist></Projlist>
-      </Container>
-      <ProjPage project={data[0]}></ProjPage>
-      <MemberPage member = {data[0].members[0]}></MemberPage>
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage data= {data}></HomePage>
+          </Route>
+          <Route path="/projpage/:project" 
+          render={(props)=><ProjPage project = {data[0]} {...props} />}>
+            
+          </Route>
+          <Route path="/memberpage/:member" exact>
+            <MemberPage member = {data[0].members[0]} ></MemberPage>
+          </Route>
+        </Switch>
+        <Link to = "/projpage">this should work</Link>
+      </Router>
+
+      
+      
+      
 
     </div>
   );

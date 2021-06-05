@@ -1,9 +1,14 @@
 import React from 'react'
 import Table from "react-bootstrap/Table";
 import Projitem from "./Projitem"
-import data from "../data"
 
-export default function Projlist() {
+import AddProjForm from "./AddProjForm"
+
+
+
+export default function Projlist(props) {
+
+
     return (
         <div>
             <Table striped bordered hover size="sm">
@@ -11,11 +16,14 @@ export default function Projlist() {
                     <th>Name</th>
                     <th>Org.</th>
                     <th>Status</th>
+                    <th></th>
                 </thead>
                 <tbody>
+                    {console.log(props.data)}
                     {
-                      data.map((proj , key)=>{
-                          return <Projitem Name = {proj.name} Org={proj.org}  Status = {proj.status}/>
+                      
+                      props.data.map((proj , key)=>{
+                          return <Projitem Name = {proj.name} Org={proj.org}  Status = {proj.status} _id = {proj._id}  />
                       })
                     }
                     
@@ -23,6 +31,8 @@ export default function Projlist() {
                     <Projitem Name = "Story2" Org = "XYZ" Status="Ongoing"></Projitem> */}
                 </tbody>
             </Table>
+            <AddProjForm></AddProjForm>
+            
         </div>
     )
 }

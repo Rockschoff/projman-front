@@ -3,16 +3,14 @@ var Task = {
     description : "make the changes discussed in scene2.",
     assigned : "20-05-21",
     deadline : "30-05-21",
-    status : "assigned", // to be assigned , to be reviewed , completed
-    working : "Jayden , Beth , Jay",
-    urgent : false
-
+    urgent : false  
 }
 
 var jayden = {
     name : "Jayden",
     email : "jayden@gmail.com",
     role : "design",
+    _id : 1,
     
     tasks : [Task , Task , Task],
     special : "I like this person"
@@ -20,6 +18,7 @@ var jayden = {
 
 var beth = {
     name : "Beth",
+    _id : 1,
     email : "beth@gmail.com",
     role : "design",
     
@@ -29,6 +28,7 @@ var beth = {
 
 var chris = {
     name : "Chris",
+    _id : 1,
     email : "chris@gmail.com",
     role : "design",
     tasks : [Task , Task , Task],
@@ -38,7 +38,7 @@ var chris = {
 var proj1 = {
     name : "Proj1",
     org : "ABC",
-    id_ : "1",
+    _id : "1",
     link : "www.google.com",
     start : "15-05-21",
     deadline : "15-06-21",
@@ -51,7 +51,7 @@ var proj1 = {
 var proj2 = {
     name : "Proj2",
     org : "XYZ",
-    id_ : "2",
+    _id : "2",
     link : "www.google.com",
     start : "20-05-21",
     deadline : "17-06-21",
